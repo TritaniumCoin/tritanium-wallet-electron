@@ -17,7 +17,7 @@ This wallet contains the basic functions required to manage your TritaniumCoin a
   * Display transaction detail
   * Export incoming, outgoing, or all transactions to csv file.
   * Incoming Transaction notification
-  * Send TurtleCoin to single recipient address, allow to set payment id and custom fee. Provides address lookup from addressbook.
+  * Send TritaniumCoin to single recipient address, allow to set payment id and custom fee. Provides address lookup from addressbook.
   * Perform wallet optimization by creating fusion transactions 
   * Provides utility to generate payment id and integrated address
 * Address book
@@ -28,7 +28,7 @@ This wallet contains the basic functions required to manage your TritaniumCoin a
 * Misc
   * Provides setting to set local or public node address
   * Option to use system tray (on closing/minimizing wallet)
-  * Provides list of public nodes, fetch/updated daily from turtlecoin-nodes-json repo.
+  * Provides list of public nodes, fetch/updated daily from tritaniumcoin-nodes-json repo.
   * Custom node address that is not on the list will be added/remembered for future use
   * Theme: Dark & Light Mode
   * [Keyboard shortcuts](docs/shortcut.md)
@@ -73,10 +73,10 @@ You need to have `Node.js` and `npm` installed, go to https://nodejs.org and fin
 
 Once you have Node+npm installed:
 ```
-# first, download turtle-service binary for each platform
+# first, download tritanium-service binary for each platform
 # from TritaniumCoin official repo
 # https://github.com/TritaniumCoin/TritaniumCoin/releases
-# extract the turtle-service executable somewhere
+# extract the tritanium-service executable somewhere
 
 # clone the repo
 $ git clone https://github.com/tritaniumcoin/tritanium-wallet-electron
