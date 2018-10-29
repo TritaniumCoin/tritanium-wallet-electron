@@ -7,7 +7,7 @@ class WalletShellApi {
         this.service_host = args.service_host || '127.0.0.1';
         this.service_port = args.service_port || 8070;
         this.service_password = args.service_password || "WHATEVER1234567891";
-        this.tx_fee = (args.tx_fee !== undefined) ? args.tx_fee : 0.1;
+        this.tx_fee = (args.tx_fee !== undefined) ? args.tx_fee : 0.0001;
         this.anonimity = 3;
     }
     _sendRequest(method, params, timeout) {
@@ -193,11 +193,11 @@ class WalletShellApi {
             params.address = params.address || false;
             //params.transfers = params.transfers || false;
             params.paymentId = params.paymentId || false;
-            params.fee = params.fee || 0.1;
+            params.fee = params.fee || 0.0001;
             if (!params.address) return reject(new Error('Missing recipient address parameter'));
             if (!params.amount) return reject(new Error('Missing transaction amount parameter'));
-            if (parseFloat(params.fee) < 0.1) return reject(new Error('Minimum fee is 0.1 TRTL'));
-            //[{address: "TRTLxxxx...", amount: 100}];
+            if (parseFloat(params.fee) < 0.0001) return reject(new Error('Minimum fee is 0.0001 TTNZ'));
+            //[{address: "TRI1xxxx...", amount: 100}];
             var req_params = {
                 transfers: [{ address: params.address, amount: params.amount }],
                 fee: params.fee

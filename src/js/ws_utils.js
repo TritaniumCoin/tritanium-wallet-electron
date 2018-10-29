@@ -104,7 +104,7 @@ exports.genQrDataUrl = (inputStr) => {
 
 exports.validateTRTLAddress = (address) => {
     if(!address) return false;
-    let re = new RegExp(/^TRTL(?=[aA-zZ0-9]*$)(?:.{95}|.{183})$/g);
+    let re = new RegExp(/^Tri(?=[aA-zZ0-9]*$)(?:.{95}|.{183})$/g);
     return re.test(address);
 };
 

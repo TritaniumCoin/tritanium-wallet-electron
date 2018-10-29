@@ -18,27 +18,28 @@ log.transports.console.level = LOG_LEVEL;
 log.transports.file.level = LOG_LEVEL;
 log.transports.file.maxSize = 5 * 1024 * 1024;
 
-const WALLETSHELL_VERSION = app.getVersion() || '0.3.4';
-const SERVICE_FILENAME =  (platform === 'win32' ? 'turtle-service.exe' : 'turtle-service' );
+const WALLETSHELL_VERSION = app.getVersion() || '0.2.0';
+const SERVICE_FILENAME =  (platform === 'win32' ? 'tritanium-service.exe' : 'tritanium-service' );
 const SERVICE_OSDIR = (platform === 'win32' ? 'win' : (platform === 'darwin' ? 'osx' : 'lin'));
 const DEFAULT_SERVICE_BIN = path.join(process.resourcesPath,'bin', SERVICE_OSDIR, SERVICE_FILENAME);
-const DEFAULT_TITLE = 'WalletShell TurtleCoin Wallet';
-const DEFAULT_TRAY_TIP = 'Slow and steady wins the race!';
-const PUBLIC_NODES_URL = 'https://raw.githubusercontent.com/turtlecoin/turtlecoin-nodes-json/master/turtlecoin-nodes.json';
+const DEFAULT_TITLE = 'TritaniumCoin Wallet';
+const DEFAULT_TRAY_TIP = '3 times the strength of Titanium';
+const PUBLIC_NODES_URL = 'https://tritanium.io/tritaniumcoin-nodes.json';
 const FALLBACK_NODES = [
-    'public.turtlenode.io:11898',
-    'public.turtlenode.net:11898',
+    '192.243.108.225:16123',
+    '18.212.173.42:16123',
+    '18.205.29.105:16123'
 ];
 const DEFAULT_SETTINGS = {
     service_bin: DEFAULT_SERVICE_BIN,
     service_host: '127.0.0.1',
     service_port: 8070,
     service_password: crypto.randomBytes(32).toString('hex'),
-    daemon_host: 'public.turtlenode.io',
-    daemon_port: 11898,
+    daemon_host: '192.243.108.225',
+    daemon_port: 16123,
     pubnodes_date: null,
     pubnodes_data: FALLBACK_NODES,
-    pubnodes_custom: ['127.0.0.1:11898'],
+    pubnodes_custom: ['127.0.0.1:16123'],
     tray_minimize: false,
     tray_close: false,
     darkmode: true
@@ -51,7 +52,7 @@ const DEFAULT_SIZE = {
 app.prompExit = true;
 app.prompShown = false;
 app.needToExit = false;
-app.setAppUserModelId('lol.turtlecoin.walletshell');
+app.setAppUserModelId('tritaniumcoin.walletshell');
 
 log.info(`Starting WalletShell ${WALLETSHELL_VERSION}`);
 
@@ -278,9 +279,9 @@ function serviceBinCheck(){
             log.error(err);
         }else{
             settings.set('service_bin', targetPath);
-            log.debug(`turtle-service copied to ${targetPath}`);
+            log.debug(`tritanium-service copied to ${targetPath}`);
         }
-        //log.warn(`TurtleService copied to ${targetPath}`);
+        //log.warn(`TritaniumService copied to ${targetPath}`);
         //settings.set('service_bin', targetPath);
     });
 }

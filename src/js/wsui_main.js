@@ -250,7 +250,7 @@ function setDarkMode(dark){
         dmswitch.firstChild.dataset.icon = 'sun';
     }else{
         thtml.classList.remove('dark');
-        dmswitch.setAttribute('title', 'Swith to dark mode');
+        dmswitch.setAttribute('title', 'Switch to dark mode');
         dmswitch.firstChild.classList.remove('fa-sun');
         dmswitch.firstChild.classList.add('fa-moon');
         settings.set('darkmode', false);
@@ -345,7 +345,7 @@ function showIntegratedAddressForm(){
     <h4>Generate Integrated Address:</h4>
     <div class="input-wrap">
     <label>Wallet Address</label>
-    <textarea id="genInputAddress" class="default-textarea" placeholder="Required, put any valid TRTL address..">${ownAddress}</textarea>
+    <textarea id="genInputAddress" class="default-textarea" placeholder="Required, put any valid TTNZ address..">${ownAddress}</textarea>
     </div>
     <div class="input-wrap">
     <label>Payment Id (<a id="makePaymentId" class="wallet-tool inline-tool" title="generate random payment id...">generate</a>)</label>
@@ -622,18 +622,10 @@ function insertSampleAddresses(){
     let flag = 'addressBookFirstUse';
     if(!settings.get(flag, true)) return;
     const sampleData = [
-        { name: 'labaylabay',
-          address: 'TRTLv1A26ngXApin33p1JsSE9Yf6REj97Xruz15D4JtSg1wuqYTmsPj5Geu2kHtBzD8TCsfd5dbdYRsrhNXMGyvtJ61AoYqLXVS',
-          paymentId: 'DF794857BC4587ECEC911AF6A6AB02513FEA524EC5B98DA8702FAC92195A94B2', 
+        { name: 'Mestopholis',
+          address: 'Tri1KMKwrgphRAAvHKchfccYQKmB4a3cfLpYbMdRyHdhKGecD3Xr52FdHib2S1MTWL6VmPgfAXgV3MNXf3kpGPTu2pHZrxVaYC',
+          paymentId: '30708298ec3e4e7cd1c5039cf9085400dc2bd694312794532bf628041beb65f4', 
         },
-        { name: 'Macroshock',
-          address: 'TRTLv3R17LWbVw8Qv4si2tieyKsytUfKQXUgsmjksgrgJsTsnhzxNAeLKPjsyDGF7HGfjqkDegu2LPaC5NeVYot1SnpfcYmjwie',
-          paymentId: '', 
-        },
-        { name: 'RockSteady',
-          address: 'TRTLuxEnfjdF46cBoHhyDtPN32weD9fvL43KX5cx2Ck9iSP4BLNPrJY3xtuFpXtLxiA6LDYojhF7n4SwPNyj9M64iTwJ738vnJk',
-          paymentId: '', 
-        }
     ];
 
     sampleData.forEach((item) => {
@@ -701,7 +693,7 @@ function handleSettings(){
         }
 
         if(!wsutil.isRegularFileAndWritable(serviceBinValue)){
-            formMessageSet('settings','error',`Unable to find turtle-service, please enter the correct path`);
+            formMessageSet('settings','error',`Unable to find tritanium-service, please enter the correct path`);
             return false;
         }
         
@@ -862,7 +854,7 @@ function handleAddressBook(){
      }
 
      function setAbPaymentIdState(addr){
-        if(addr.length > 99){
+        if(addr.length > 98){
             addressBookInputPaymentId.value = '';
             addressBookInputPaymentId.setAttribute('disabled', true);
         }else{
@@ -893,7 +885,7 @@ function handleAddressBook(){
         }
 
         if(!wsutil.validateTRTLAddress(walletValue)){
-            formMessageSet('addressbook','error',"Invalid TurtleCoin address");
+            formMessageSet('addressbook','error',"Invalid TritaniumCoin address");
             return;
         }
         
@@ -904,7 +896,7 @@ function handleAddressBook(){
             }
         }
 
-        if(walletValue.length > 99) paymentIdValue.value = '';
+        if(walletValue.length > 98) paymentIdValue.value = '';
 
         let entryName = nameValue.trim();
         let entryAddr = walletValue.trim();
@@ -1356,9 +1348,9 @@ function handleSendTransfer(){
         if(maxsend) sendInputAmount.value = maxsend;
         
     });
-    sendInputFee.value = 0.1;
+    sendInputFee.value = 0.0001;
     function setPaymentIdState(addr){
-        if(addr.length > 99){
+        if(addr.length > 98){
             sendInputPaymentId.value = '';
             sendInputPaymentId.setAttribute('disabled', true);
         }else{
@@ -1394,7 +1386,7 @@ function handleSendTransfer(){
         let tobeSent = 0;
 
         if(!recAddress.length || !wsutil.validateTRTLAddress(recAddress)){
-            formMessageSet('send','error','Sorry, invalid TRTL address');
+            formMessageSet('send','error','Sorry, invalid TTNZ address');
             return;
         }
 
@@ -1410,41 +1402,41 @@ function handleSendTransfer(){
             }
         }
 
-        if(recAddress.length > 99) recPayId = '';
+        if(recAddress.length > 98) recPayId = '';
         
         if (amount <= 0) {
             formMessageSet('send','error','Sorry, invalid amount');
             return;
         }
 
-        if (precision(amount) > 2) {
-            formMessageSet('send','error',"Amount can't have more than 2 decimal places");
+        if (precision(amount) > 6) {
+            formMessageSet('send','error',"Amount can't have more than 6 decimal places");
             return;
         }
 
         let rAmount = amount; // copy raw amount for dialog
         tobeSent += amount;
-        let minFee = 0.10;
-        amount *= 100;
+        let minFee = 0.0001;
+        amount *= 1000000;
 
-        if (fee < 0.10) {
-            formMessageSet('send','error',`Fee can't be less than ${(minFee).toFixed(2)}`);
+        if (fee < 0.0001) {
+            formMessageSet('send','error',`Fee can't be less than ${(minFee).toFixed(4)}`);
             return;
         }
 
-        if (precision(fee) > 2) {
-            formMessageSet('send','error',"Fee can't have more than 2 decimal places");
+        if (precision(fee) > 4) {
+            formMessageSet('send','error',"Fee can't have more than 4 decimal places");
             return;
         }
         let rFee = fee; // copy raw fee for dialog
         tobeSent += fee;
-        fee *= 100;
+        fee *= 1000000;
         
 
         let nodeFee = wsession.get('nodeFee') || 0;
-        tobeSent = (tobeSent+nodeFee).toFixed(2);
+        tobeSent = (tobeSent+nodeFee).toFixed(6);
 
-        const availableBalance = wsession.get('walletUnlockedBalance') || (0).toFixed(2);
+        const availableBalance = wsession.get('walletUnlockedBalance') || (0).toFixed(6);
 
         if(parseFloat(tobeSent) > parseFloat(availableBalance)){
             formMessageSet(
@@ -1472,13 +1464,13 @@ function handleSendTransfer(){
                         <dt class="${recPayId.length ? 'dt-ib' : 'hidden'}">Payment ID:</dt>
                         <dd class="${recPayId.length ? 'dd-ib' : 'hidden'}">${recPayId.length ? recPayId : 'N/A'}</dd>
                         <dt class="dt-ib">Amount:</dt>
-                        <dd class="dd-ib">${rAmount} TRTL</dd>
+                        <dd class="dd-ib">${rAmount} TTNZ</dd>
                         <dt class="dt-ib">Transaction Fee:</dt>
-                        <dd class="dd-ib">${rFee} TRTL</dd>
+                        <dd class="dd-ib">${rFee} TTNZ</dd>
                         <dt class="dt-ib">Node Fee:</dt>
-                        <dd class="dd-ib">${(nodeFee > 0 ? nodeFee : '0.00')} TRTL</dd>
+                        <dd class="dd-ib">${(nodeFee > 0 ? nodeFee : '0.00')} TTNZ</dd>
                         <dt class="dt-ib">Total:</dt>
-                        <dd class="dd-ib">${tobeSent} TRTL</dd>
+                        <dd class="dd-ib">${tobeSent} TTNZ</dd>
                     </dl>
                 </div>
             </div>
@@ -1922,12 +1914,12 @@ function initHandlers(){
             return;
         }
         if(!wsutil.validateTRTLAddress(addr)){
-            formMessageSet('gia','error', 'Invalid TRTL address');
+            formMessageSet('gia','error', 'Invalid TTNZ address');
             return;
         }
         // only allow standard address
-        if(addr.length > 99){
-            formMessageSet('gia','error', 'Only standard TRTL address are supported');
+        if(addr.length > 98){
+            formMessageSet('gia','error', 'Only standard TTNZ address are supported');
             return;
         }
         if(!wsutil.validatePaymentId(pid)){
