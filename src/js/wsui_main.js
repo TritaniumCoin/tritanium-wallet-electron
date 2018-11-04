@@ -1616,7 +1616,18 @@ function handleTransactions(){
         });
     }
 
+    function updateTransactions(){
+	if(document.activeElement.id = 'tx-search'){
+	   return;
+	}
+	else
+	{
+	   listTransactions();
+	}
+    }
+
     function listTransactions(){
+	
         if(wsession.get('txLen') <= 0){
             setTxFiller(true);
             return;
@@ -1809,7 +1820,7 @@ function handleTransactions(){
         });
     });
 
-    txButtonRefresh.addEventListener('click', listTransactions);
+    txButtonRefresh.addEventListener('click', updateTransactions);
 }
 
 function handleNetworkChange(){

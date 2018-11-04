@@ -242,6 +242,7 @@ function updateTransactions(result){
     });
 
     if(!txListNew.length) return;
+
     let latestTx = txListNew[0];
     let newLastHash = latestTx.transactionHash;
     let newLastTimestamp = latestTx.timestamp;

@@ -18,13 +18,13 @@ log.transports.console.level = LOG_LEVEL;
 log.transports.file.level = LOG_LEVEL;
 log.transports.file.maxSize = 5 * 1024 * 1024;
 
-const WALLETSHELL_VERSION = app.getVersion() || '0.2.0';
+const WALLETSHELL_VERSION = app.getVersion() || '0.2.1';
 const SERVICE_FILENAME =  (platform === 'win32' ? 'tritanium-service.exe' : 'tritanium-service' );
 const SERVICE_OSDIR = (platform === 'win32' ? 'win' : (platform === 'darwin' ? 'osx' : 'lin'));
 const DEFAULT_SERVICE_BIN = path.join(process.resourcesPath,'bin', SERVICE_OSDIR, SERVICE_FILENAME);
 const DEFAULT_TITLE = 'TritaniumCoin Wallet';
 const DEFAULT_TRAY_TIP = '3 times the strength of Titanium';
-const PUBLIC_NODES_URL = 'https://tritanium.io/tritaniumcoin-nodes.json';
+const PUBLIC_NODES_URL = 'https://www.traceabilityblockchain.io/tritaniumcoin-nodes.json';
 const FALLBACK_NODES = [
     '192.243.108.225:16123',
     '18.212.173.42:16123',
